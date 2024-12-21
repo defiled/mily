@@ -1,4 +1,5 @@
-import ClientWrapper from "@/components/ClientWrapper";
+import EventForm from "@/components/EventForm";
+import Timeline from "@/components/Timeline";
 import { prisma } from "@/lib/prisma";
 
 export default async function Page() {
@@ -6,5 +7,10 @@ export default async function Page() {
         orderBy: { eventDate: "desc" },
     });
 
-    return <ClientWrapper initialEvents={events} />;
+    return (
+        <div className="space-y-8">
+            <EventForm />
+            <Timeline initialEvents={events} />
+        </div>
+    );
 }

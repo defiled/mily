@@ -1,15 +1,11 @@
-export interface BaseEvent {
+export interface NewEvent {
     title: string;
     description: string;
     photoUrl: string;
     eventDate: Date;
 }
 
-export interface NewEvent extends BaseEvent {
-    // Fields needed for creation
-}
-
-export interface DBEvent extends BaseEvent {
+export interface DBEvent extends NewEvent {
     id: number;
     createdAt: Date;
     // Any other DB-specific fields

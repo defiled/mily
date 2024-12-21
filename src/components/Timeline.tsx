@@ -1,13 +1,19 @@
 "use client";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import type { DBEvent } from "@/types/events";
+import Image from "next/image";
 
 interface TimelineProps {
     initialEvents: DBEvent[];
 }
 
 export default function Timeline({ initialEvents }: TimelineProps) {
-    const [events] = useState(initialEvents);
+    const [events, setEvents] = useState(initialEvents);
+
+    useEffect(() => {
+        setEvents(initialEvents);
+    }, [initialEvents]);
 
     return (
         <div className="space-y-6">
@@ -16,7 +22,7 @@ export default function Timeline({ initialEvents }: TimelineProps) {
                     key={event.id}
                     className="bg-white p-4 rounded shadow border-l-4 border-blue-600"
                 >
-                    <img
+                    <Image
                         src={event.photoUrl}
                         alt={event.title}
                         width={600}
